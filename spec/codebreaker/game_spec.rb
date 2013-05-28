@@ -25,7 +25,7 @@ module Codebreaker
           game.guess('5555')
         end 
       end
-
+%*
       context "with 1 number match" do
         it "c'-'" do
           game.start('1234')
@@ -56,7 +56,7 @@ module Codebreaker
           output.should_receive(:puts).with('+-')
           game.guess('2535')
         end
-      end
+      end*
     end
   end
 end
