@@ -18,6 +18,26 @@ module Codebreaker
     end
 
     describe "#guess" do
+      it "sends the mark to output" do
+        game.start('1234')
+        output.should_receive(:puts).with('++++')
+        game.guess('1234')
+      end 
+
+    describe "#game_finish" do
+      it "sends 'Enter your name: ' " do
+        output.should_receive(:print).with("Enter your name: ")
+      end
+
+      it "sends name when user enter name" do
+        File.stub(:open)
+        File.should_receive(:open).with("statistic_game.txt", "w+")
+        File.stub(:read)
+        File.should_receive(:read).with("statistic_game.txt")
+      end
+    end
+
+%*
       context "with no matches" do
         it "sends a mark with ''" do 
           game.start('1234') 
@@ -25,7 +45,7 @@ module Codebreaker
           game.guess('5555')
         end 
       end
-%*
+
       context "with 1 number match" do
         it "c'-'" do
           game.start('1234')
