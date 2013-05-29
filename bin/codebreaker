@@ -2,6 +2,22 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'codebreaker'
 
+
+
+#def secret_rand_code
+  #options = ''
+  #options << rand(1..6).to_s 
+ # options = %w[1 2 3 4 5 6]
+  #(1..4).map { options.delete_at(rand(options.length))}.join
+#end
+
+#game = Codebreaker::Game.new(STDOUT)
+#secret_code = secret_rand_code
+#game.start(secret_code)
+#while guess = gets.chomp
+#  game.guess(guess)
+#end
+
 game = Codebreaker::Game.new(STDOUT)
 game.start('1234')
 while guess = gets.chomp
