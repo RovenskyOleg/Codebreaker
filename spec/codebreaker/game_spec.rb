@@ -4,6 +4,7 @@ module Codebreaker
   describe Game do
     let(:output) { double('output').as_null_object }
     let(:game)   { Game.new(output) }
+  
     
     describe "#start" do
       it "sends a welcome message" do
@@ -26,6 +27,7 @@ module Codebreaker
 
       it "call method game_finis" do
         output.stub(:game_finish) 
+      end
     end
 
     describe "#game_finish" do
@@ -42,7 +44,7 @@ module Codebreaker
       end
     end
 
-    describe "#to_file"
+    describe "#to_file" do
       xit "sends information when user enter his name" do
         File.stub(:open)
         File.should_receive(:open).with("statistic_game.txt", "w+")
@@ -52,49 +54,8 @@ module Codebreaker
     describe "#statistic" do
       xit "displays information when the user has jump information" do
         File.stub(:read)
-        File.should_receive(:read).with("statistic_game.txt")
+        File.should_rseceive(:read).with("statistic_game.txt")
       end
     end
   end
 end
-
-%*
-      context "with no matches" do
-        it "sends a mark with ''" do 
-          game.start('1234') 
-          output.should_receive(:puts).with('') 
-          game.guess('5555')
-        end 
-      end
-
-      context "with 1 number match" do
-        it "c'-'" do
-          game.start('1234')
-          output.should_receive(:puts).with('-')
-          game.guess('2555')
-        end
-      end
-      
-      context "with 1 exact match" do
-        it "sends a mark with '+'" do
-          game.start('1234')
-          output.should_receive(:puts).with('+')
-          game.guess('1555')
-        end
-      end
-
-      context "with 2 number matches" do
-        it "sends a mark with '--'" do
-          game.start('1234')
-          output.should_receive(:puts).with('--')
-          game.guess('2355')
-        end
-      end
-
-      context "with 1 number match and 1 exact match (in that order)" do
-        it "sends a mark with '+-'" do
-          game.start('1234')
-          output.should_receive(:puts).with('+-')
-          game.guess('2535')
-        end
-      end*
