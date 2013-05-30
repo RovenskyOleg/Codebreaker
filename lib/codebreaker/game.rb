@@ -5,16 +5,14 @@ module Codebreaker
     end
     
     def start(secret)
-      @secret = secret
-      @count = 0
+      @secret = secret 
       @output.puts 'Welcome to Codebreaker!'
       @output.puts 'Enter guess:'
-     # @output.puts 'You have the 8 th attempt'
     end
     
     def to_file(name)
       File.open("statistic_game.txt", "w+") do |file|
-        file.puts("(Name: #{name})")
+        file.puts("(Name: #{name}) code: #{secret_code}")
       end
     end
 
@@ -30,8 +28,6 @@ module Codebreaker
     end
 
     def guess(guess)
-      #@count += 1 
-
       marker = Marker.new(@secret, guess)
       @output.puts '+'*marker.exact_match_count + '-'*marker.number_match_count
         if marker.exact_match_count == 4
