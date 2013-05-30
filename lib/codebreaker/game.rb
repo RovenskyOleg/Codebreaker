@@ -12,7 +12,7 @@ module Codebreaker
     
     def to_file(name)
       File.open("statistic_game.txt", "w+") do |file|
-        file.puts("(Name: #{name}) code: #{secret_code}")
+        file.puts("(Name: #{name})")
       end
     end
 
