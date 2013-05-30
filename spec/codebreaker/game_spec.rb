@@ -22,11 +22,15 @@ module Codebreaker
         game.start('1234')
         output.should_receive(:puts).with('++++')
         game.guess('1234')
-      end 
+      end
+    end
+    
 
     describe "#game_finish" do
       it "sends 'Enter your name: ' " do
+        #game.exact_match_count == 4
         output.should_receive(:print).with("Enter your name: ")
+        #game.start('1234')
       end
 
       it "sends name when user enter name" do
@@ -77,6 +81,6 @@ module Codebreaker
           game.guess('2535')
         end
       end*
-    end
+    #end
   end
 end
