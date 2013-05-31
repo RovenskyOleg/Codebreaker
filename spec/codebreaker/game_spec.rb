@@ -29,7 +29,7 @@ module Codebreaker
     end
 
     describe "#game_finish" do
-      xit "sends 'Enter your name: ' when game is over" do 
+      it "sends 'Enter your name: ' when game is over" do 
         output.should_receive(:puts).with('Enter your name: ')
         Game.any_instance.stub(:to_file)
         Game.any_instance.stub(:statistic)
@@ -37,7 +37,7 @@ module Codebreaker
       end
 
       it "exit" do
-         lambda { @output.game_finish; exit}.should raise_error(SystemExit)  
+         lambda { output.game_finish; exit }.should raise_error(SystemExit)  
       end
     end
 
