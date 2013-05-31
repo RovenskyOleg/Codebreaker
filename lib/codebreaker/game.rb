@@ -21,7 +21,7 @@ module Codebreaker
     end
 
     def game_finish
-      @output.print("Enter your name: ")
+      @output.puts 'Enter your name: ' 
       to_file(@input.gets.chomp)
       @output.puts(statistic)
       exit  

@@ -3,6 +3,7 @@ require 'spec_helper'
 module Codebreaker
   describe Game do
     let(:output) { double('output').as_null_object }
+    let(:input) { double('input').as_null_object }
     let(:game)   { Game.new(output) }
   
     
@@ -25,37 +26,32 @@ module Codebreaker
         Game.any_instance.stub(:game_finish)
         game.guess('1234')
       end
-
-      #it "call method game_finis" do
-       # output.stub(:game_finish) 
-      #end
     end
 
     describe "#game_finish" do
-      xit "sends 'Enter your name: ' when game is over" do      
-        output.should_receive(:print).with("Enter your name: ")
+      it "sends 'Enter your name: ' when game is over" do 
+        output.should_receive(:puts).with("Enter your name: ")
+        Game.any_instance.stub(:to_file)
+        Game.any_instance.stub(:statistic)
+        game.game_finish
       end
 
-      xit "call method to_file" do
-        output.stub(:to_file)
-      end
-
-      xit "call method statistic" do
-        output.stub(:statistic)
-      end
+      it "exit"
     end
 
     describe "#to_file" do
       it "sends information when user enter his name" do
         File.stub(:open)
         File.should_receive(:open).with("statistic_game.txt", "w+")
+        game.to_file("Viktor")
       end
     end
 
     describe "#statistic" do
       it "displays information when the user has jump information" do
         File.stub(:read)
-        File.should_rseceive(:read).with("statistic_game.txt")
+        File.should_receive(:read).with("statistic_game.txt")
+        game.statistic
       end
     end
   end
