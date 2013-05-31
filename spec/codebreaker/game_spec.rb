@@ -20,18 +20,36 @@ module Codebreaker
     end
 
     describe "#guess" do
-      it "sends the mark to output" do
-        game.start('1234')
-        output.should_receive(:puts).with('++++')
-        Game.any_instance.stub(:game_finish)
-        game.guess('1234')
+      context "No valid number arguments" do
+        it "sends not valid > numbers return 'Wrong number arguments' " do
+          game.start('1234')
+          output.should_receive(:puts).with('Wrong number arguments')
+          Game.any_instance.stub(:game_finish)
+          game.guess('12345')
+        end
+
+        it "sends not valid < numbers return 'Wrong number arguments' " do
+          game.start('1234')
+          output.should_receive(:puts).with('Wrong number arguments')
+          Game.any_instance.stub(:game_finish)
+          game.guess('123')
+        end
+      end
+      
+      context "Result" do      
+        it "sends the mark to output" do
+          game.start('1234')
+          output.should_receive(:puts).with('++++')
+          Game.any_instance.stub(:game_finish)
+          game.guess('1234')
+        end
       end
     end
 
     describe "#game_finish" do
-      it "sends 'Enter your name: ' when game is over" do 
+      xit "sends 'Enter your name: ' when game is over" do 
         output.should_receive(:puts).with('Enter your name: ')
-        Game.any_instance.stub(:to_file)
+        Game.any_instance.stub(:save)
         Game.any_instance.stub(:statistic)
         game.game_finish
       end
@@ -41,16 +59,16 @@ module Codebreaker
       end
     end
 
-    describe "#to_file" do
+    describe "#save" do
       it "sends information when user enter his name" do
         File.stub(:open)
         File.should_receive(:open).with("statistic_game.txt", "w+")
-        game.to_file("Viktor")
+        game.save("Viktor")
       end
     end
 
     describe "#statistic" do
-      it "displays information when the user has jump information" do
+      it "displays information when the user has jump information to file" do
         File.stub(:read)
         File.should_receive(:read).with("statistic_game.txt")
         game.statistic
