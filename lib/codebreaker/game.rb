@@ -13,7 +13,7 @@ module Codebreaker
     
     def save(name)
       File.open("statistic_game.txt", "w+") do |file|
-        file.puts("(Name: #{name} - attempts: #{@count} - Play date: #{Time.now})" )
+        file.puts("(Name: #{name} - attempts: #{@count} - Secret code: #{secret_code} - Play date: #{Time.now})" )
       end
     end
 
