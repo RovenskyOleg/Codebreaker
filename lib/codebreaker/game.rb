@@ -5,15 +5,15 @@ module Codebreaker
     end
     
     def start(secret)
-      @secret = secret
       @count = 0 
+      @secret = secret
       @output.puts 'Welcome to Codebreaker!'
       @output.puts 'Enter guess:'
     end
     
     def save(name)
-      File.open("statistic_game.txt", "w+") do |file|
-        file.puts("(Name: #{name} - attempts: #{@count} - Secret code: #{secret_code} - Play date: #{Time.now})" )
+      File.open("statistic_game.txt", "a+") do |file|
+        file.puts("(Name: #{name} - attempts: #{@count} - Secret code: #{@secret} - Play date: #{Time.now})" )
       end
     end
 
@@ -21,22 +21,38 @@ module Codebreaker
       File.read("statistic_game.txt")
     end
 
+    def hint
+      index = rand(0..3)
+      str = '****'
+      str[index] = @secret[index]
+      str
+    end
+
     def game_finish
       @output.puts 'Enter your name: ' 
       save(@input.gets.chomp)
       @output.puts(statistic)
-      exit  
+      @output.puts "Play again? [y/n]"
+      if (gets.chomp == "y")
+        @output.puts start(@secret)
+      else
+        exit
+      end
     end
 
-    def guess(guess)
+    def guess(guess)      
       unless guess.length == 4
-        return @output.puts 'Wrong number arguments'
+        @output.puts 'Wrong number arguments'
+      else
+        if (gets.chomp == "hint")
+          @output.puts hint
         else
           @count += 1
           marker = Marker.new(@secret, guess)
           @output.puts '+'*marker.exact_match_count + '-'*marker.number_match_count
           if marker.exact_match_count == 4
-          game_finish
+            game_finish
+          end
         end 
       end
     end 

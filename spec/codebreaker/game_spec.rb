@@ -52,7 +52,6 @@ module Codebreaker
         input.stub_chain(:gets, :chomp).and_return(filename)
         Game.any_instance.stub(:save).with(filename)
         output.should_receive(:puts).with('Enter your name: ')
-        #output.stub(exit)
         game.stub!(:exit).and_return 1
         game.game_finish
       end
@@ -65,7 +64,7 @@ module Codebreaker
     describe "#save" do
       it "sends information when user enter his name" do
         File.stub(:open)
-        File.should_receive(:open).with("statistic_game.txt", "w+")
+        File.should_receive(:open).with("statistic_game.txt", "a+")
         game.save("Viktor")
       end
     end
