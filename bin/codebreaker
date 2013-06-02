@@ -4,7 +4,6 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'codebreaker'
 
 =begin
-
 game = Codebreaker::Game.new(STDOUT)
 secret_code = '1234'
 game.start(secret_code)
@@ -12,8 +11,8 @@ game.start(secret_code)
  guess = gets.chomp
  game.guess(guess)
 end
-
 =end
+
 
 def secret_rand_code
   options = ''

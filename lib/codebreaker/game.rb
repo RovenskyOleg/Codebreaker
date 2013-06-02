@@ -40,22 +40,19 @@ module Codebreaker
       end
     end
 
-      # if (gets.chomp == "hint")
-      #    @output.puts hint
-      #  else
-
     def guess(guess)      
       if guess.length != 4
         @output.puts 'Wrong number arguments'
-      else
-        if (gets.chomp == "hint")
-          @output.puts hint
         else
           @count += 1
           marker = Marker.new(@secret, guess)
           @output.puts '+'*marker.exact_match_count + '-'*marker.number_match_count
-            if marker.exact_match_count == 4
-          game_finish
+          if marker.exact_match_count == 4
+            game_finish
+          else
+            @count -= 1
+            if (gets.chomp == "hint")
+              @output.puts hint
         end
       end
     end 

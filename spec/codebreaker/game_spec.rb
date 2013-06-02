@@ -61,6 +61,14 @@ module Codebreaker
       end
     end
 
+    describe "#hint" do
+      it "sends hint" do
+        game.start('1234')
+        num = game.hint
+        game.start('1234').should include(num)
+      end 
+    end
+
     describe "#save" do
       it "sends information when user enter his name" do
         File.stub(:open)
