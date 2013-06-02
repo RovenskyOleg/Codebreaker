@@ -55,3 +55,7 @@
 (Name:  - attempts: 2 - Secret code: 1234 - Play date: 2013-06-02 16:12:06 +0300)
 (Name:  - attempts: 1 - Secret code: 1234 - Play date: 2013-06-02 16:55:31 +0300)
 (Name:  - attempts: 2 - Secret code: 1234 - Play date: 2013-06-02 16:56:20 +0300)
+(Name:  - attempts: 2 - Secret code: 1234 - Play date: 2013-06-02 17:20:42 +0300)
+(Name:  - attempts: 2 - Secret code: 1234 - Play date: 2013-06-02 17:32:21 +0300)
+(Name:  - attempts: 2 - Secret code: 1234 - Play date: 2013-06-02 17:51:55 +0300)
+(Name:  - attempts: 2 - Secret code: 1234 - Play date: 2013-06-02 18:31:32 +0300)
